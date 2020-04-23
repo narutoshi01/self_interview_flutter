@@ -30,6 +30,26 @@ class InterviewPage extends StatefulWidget {
 }
 
 class _InterviewPageState extends State<InterviewPage> {
+  bool isAnswerVisible = false;
+
+  String showAnswerText = '解答を見る';
+
+  void initAnswerState() {
+    isAnswerVisible = false;
+    showAnswerText = '解答を見る';
+  }
+
+  void toggleAnswer() {
+    if (isAnswerVisible) {
+      isAnswerVisible = false;
+      showAnswerText = '解答を見る';
+    } else {
+      isAnswerVisible = true;
+      showAnswerText = 'もう一度';
+      // 将来的には，’もう一度’ボタンを押すと，質問がもう一度再生されるようにしたい
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +64,9 @@ class _InterviewPageState extends State<InterviewPage> {
         Expanded(
           flex: 5,
           child: Center(
-            child: Text(interViewBrain.getQuestionAnswer()),
+            child: Visibility(
+                visible: isAnswerVisible,
+                child: Text(interViewBrain.getQuestionAnswer())),
           ),
         ),
         Expanded(
@@ -61,14 +83,18 @@ class _InterviewPageState extends State<InterviewPage> {
                     // 戻るボタンクリック
                     setState(() {
                       interViewBrain.prevQuestion();
+                      initAnswerState();
                     });
                   },
                 ),
               ),
               FlatButton(
-                child: Text('解答を見る'),
+                child: Text(showAnswerText),
                 onPressed: () {
                   //条件分岐　解答を表示，または，解答を隠す（もう一度）
+                  setState(() {
+                    toggleAnswer();
+                  });
                 },
               ),
               Visibility(
@@ -79,6 +105,7 @@ class _InterviewPageState extends State<InterviewPage> {
                     // 進むボタンクリック
                     setState(() {
                       interViewBrain.nextQuestion();
+                      initAnswerState();
                     });
                   },
                 ),
