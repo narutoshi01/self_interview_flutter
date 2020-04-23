@@ -9,4 +9,14 @@ class InterViewBrain {
     InterviewQuestion(
         questionText: 'あなたの弱みを教えてください', questionAnswer: '弱みに対する返答'),
   ];
+
+  int _questionNumber = 0;
+
+  String getQuestionText() {
+    return _questionBox[_questionNumber].questionText;
+  }
+
+  String getQuestionAnswer() {
+    return _questionBox[_questionNumber].questionAnswer;
+  }
 }

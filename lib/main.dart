@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'interview_brain.dart';
+
+InterViewBrain interViewBrain = InterViewBrain();
 
 void main() => runApp(SelfInterview());
 
@@ -33,15 +36,15 @@ class _InterviewPageState extends State<InterviewPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Expanded(
-          flex: 2,
+          flex: 1,
           child: Center(
-            child: Text('面接質問'),
+            child: Text(interViewBrain.getQuestionText()),
           ),
         ),
         Expanded(
-          flex: 2,
+          flex: 5,
           child: Center(
-            child: Text('回答'),
+            child: Text(interViewBrain.getQuestionAnswer()),
           ),
         ),
         Expanded(
