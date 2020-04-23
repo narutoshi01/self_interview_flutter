@@ -51,16 +51,19 @@ class _InterviewPageState extends State<InterviewPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
+              Visibility(
+                visible: interViewBrain.isPrevBtnVisible(),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                  ),
+                  onPressed: () {
+                    // 戻るボタンクリック
+                    setState(() {
+                      interViewBrain.prevQuestion();
+                    });
+                  },
                 ),
-                onPressed: () {
-                  // 戻るボタンクリック
-                  setState(() {
-                    interViewBrain.prevQuestion();
-                  });
-                },
               ),
               FlatButton(
                 child: Text('解答を見る'),
@@ -68,14 +71,17 @@ class _InterviewPageState extends State<InterviewPage> {
                   //条件分岐　解答を表示，または，解答を隠す（もう一度）
                 },
               ),
-              IconButton(
-                icon: Icon(Icons.arrow_forward),
-                onPressed: () {
-                  // 進むボタンクリック
-                  setState(() {
-                    interViewBrain.nextQuestion();
-                  });
-                },
+              Visibility(
+                visible: interViewBrain.isNextBtnVisible(),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_forward),
+                  onPressed: () {
+                    // 進むボタンクリック
+                    setState(() {
+                      interViewBrain.nextQuestion();
+                    });
+                  },
+                ),
               ),
             ],
           ),

@@ -31,4 +31,20 @@ class InterViewBrain {
       _questionNumber--;
     }
   }
+
+  bool isNextBtnVisible() {
+    if (_questionNumber < _questionBox.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool isPrevBtnVisible() {
+    if (_questionNumber != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
