@@ -57,6 +57,9 @@ class _InterviewPageState extends State<InterviewPage> {
                 ),
                 onPressed: () {
                   // 戻るボタンクリック
+                  setState(() {
+                    interViewBrain.prevQuestion();
+                  });
                 },
               ),
               FlatButton(
@@ -69,6 +72,9 @@ class _InterviewPageState extends State<InterviewPage> {
                 icon: Icon(Icons.arrow_forward),
                 onPressed: () {
                   // 進むボタンクリック
+                  setState(() {
+                    interViewBrain.nextQuestion();
+                  });
                 },
               ),
             ],
